@@ -35,6 +35,6 @@ gulp.task('build:js', ['lint:js', 'clean:js'], () => {
     .pipe(gulp.dest(paths.scriptsDest));
 });
 
-gulp.task('build:js:watch', () => {
+gulp.task('build:js:watch', ['build:js'], () => {
   gulp.watch(paths.angular + '/**/*.js', ['build:js']);
 });

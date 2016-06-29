@@ -11,6 +11,9 @@
   </head>
   <body ng-app="patterflash">
     <zf-top-bar title="Patterflash"></zf-top-bar>
+    <div ng-controller="ChatRoomHeaderController as vm">
+      <pf-chat-room-header room="vm.room"></pf-chat-room-header>
+    </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/what-input/what-input.min.js"></script>

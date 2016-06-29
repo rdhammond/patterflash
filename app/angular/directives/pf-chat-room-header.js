@@ -3,15 +3,16 @@
 
   angular
     .module('patterflash')
-    .directive('zfTopBar', zfTopBar);
+    .directive('pfChatRoomHeader', pfChatRoomHeader);
 
-  function zfTopBar() {
+  function pfChatRoomHeader() {
     return {
       restrict: 'E',
       scope: {
-        title: '@'
+        room: '='
       },
-      templateUrl: 'views/zf-top-bar.html'
+      templateUrl: 'views/pf-chat-room-header.html',
     };
   }
+
 })(angular);
