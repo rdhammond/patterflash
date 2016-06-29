@@ -1,0 +1,26 @@
+{
+  "name": "patterflash",
+  "description": "Old hat chat.",
+  "main": "main.js",
+  "authors": [
+    "R. Daniel Hammond"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "chat",
+    "websocket",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/rdhammond/patterflash.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.2.3",
+    "angular": "^1.5.7"
+  }
+}

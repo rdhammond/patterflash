@@ -1,0 +1,24 @@
+{
+  "name": "patterflash",
+  "version": "0.9.9",
+  "description": "Old hat chat.",
+  "main": "main.js",
+  "scripts": {
+    "test": "gulp test",
+    "run": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdhammond/patterflash.git"
+  },
+  "keywords": [
+    "chat",
+    "websocket",
+    "nodejs"
+  ],
+  "author": "R. Daniel Hammond",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
