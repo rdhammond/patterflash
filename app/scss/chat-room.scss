@@ -1,0 +1,34 @@
+@import 'colors';
+
+.chat-room {
+  .callout {
+    background-color: inherit;
+    height: 450px;
+    max-height: 450px;
+    overflow-y: auto;
+  }
+
+  .chat-messages {
+    .chat {
+      .name {
+        color: $secondary;
+      }
+    }
+
+    .action {
+      color: $secondary;
+    }
+
+    .room {
+      color: $highlight;
+    }
+
+    .server {
+      color: $alert;
+    }
+
+    .error {
+      color: $error;
+    }
+  }
+}

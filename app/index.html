@@ -6,14 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patterflash</title>
     <link rel="stylesheet" href="bower_components/foundation-sites/dist/foundation.min.css" />
+    <link rel="stylesheet" href="css/patterflash.min.css" />
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="js/patterflash.min.js"></script>
   </head>
   <body ng-app="patterflash">
     <zf-top-bar title="Patterflash"></zf-top-bar>
+
     <div ng-controller="ChatRoomHeaderController as vm">
       <pf-chat-room-header room="vm.room"></pf-chat-room-header>
     </div>
+
+    <div class="row">
+      <div class="small-12 medium-8 columns" ng-controller="ChatRoomController as vm">
+        <pf-chat-room></pf-chat-room>
+      </div>
+      <div class="small-12 medium-4 columns">
+      </div>
+    </div>
+
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/what-input/what-input.min.js"></script>

@@ -1,0 +1,37 @@
+<div class="chat-room">
+  <div class="callout">
+    <ul class="chat-messages no-bullet">
+      <li ng-repeat="chatMessage in vm.chatMessages">
+        <span class="chat" ng-if="chatMessage.type === 'chat'">
+          <span class="name">&lt;{{chatMessage.name}}&gt;</span>
+          {{chatMessage.text}}
+        </span>
+        <span class="action" ng-if="chatMessage.type === 'action'">
+          ** {{chatMessage.name}} {{chatMessage.text}}
+        </span>
+        <span class="room" ng-if="chatMessage.type === 'room'">
+          ** {{chatMessage.text}}
+        </span>
+        <span class="server" ng-if="chatMessage.type === 'server'">
+          ** {{chatMessage.text}}
+        </span>
+        <span class="error" ng-if="chatMessage.type === 'error'">
+          ** {{chatMessage.text}}
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <form ng-submit="vm.send()">
+    <div class="columns row">
+      <div class="input-group">
+        <input type="text" class="input-group-field" placeholder="Type Message Here"
+          ng-model="vm.message">
+        <div class="input-group-button">
+          <input type="submit" class="primary button" value="Send"
+            ng-disabled="!vm.message">
+      </div>
+    </div>
+    </div>
+  </form>
+</div>
