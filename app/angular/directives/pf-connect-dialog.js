@@ -5,9 +5,9 @@
     .module('patterflash')
     .directive('pfConnectDialog', pfConnectDialog);
 
-  pfConnectDialog.$inject = ['$rootScope'];
+  pfConnectDialog.$inject = ['chatClient'];
 
-  function pfConnectDialog($rootScope) {
+  function pfConnectDialog(chatClient) {
     return {
       restrict: 'E',
       templateUrl: 'views/pf-connect-dialog.html',
@@ -26,7 +26,10 @@
       init();
 
       function init() {
-        scope.$watch('connected', connectedChanged);
+        scope.$watch(
+          function() { return chatClient.connected; },
+          connectedChanged
+        );
       }
 
       function connectedChanged(newVal) {

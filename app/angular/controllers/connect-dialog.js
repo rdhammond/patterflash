@@ -5,17 +5,15 @@
     .module('patterflash')
     .controller('ConnectDialogController', ConnectDialogController);
 
-  ConnectDialogController.$inject = ['$scope'];
+  ConnectDialogController.$inject = ['chatClient', 'error'];
 
-  function ConnectDialogController($scope) {
+  function ConnectDialogController(chatClient, error) {
     var vm = this;
     vm.connect = connect;
 
-    // Need direct scope here to communicate with our directive.
-    $scope.connected = false;
-
     function connect() {
-      $scope.connected = true;
+      // ** TODO
+      chatClient.connect().catch(error.catch);
     }
   }
 
