@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="bower_components/foundation-sites/dist/foundation.min.css" />
     <link rel="stylesheet" href="bower_components/foundation-icon-fonts/foundation-icons.css" />
     <link rel="stylesheet" href="css/patterflash.min.css" />
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="js/patterflash.min.js"></script>
   </head>
   <body ng-app="patterflash">
     <zf-top-bar title="Patterflash"></zf-top-bar>
@@ -27,12 +25,15 @@
       </div>
     </div>
 
+    <div ng-controller="ConnectDialogController as vm">
+      <pf-connect-dialog></pf-connect-dialog>
+    </div>
+
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/what-input/what-input.min.js"></script>
     <script src="bower_components/foundation-sites/dist/foundation.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+    <script src="js/patterflash.min.js"></script>
   </body>
 </html>

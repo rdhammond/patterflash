@@ -1,0 +1,16 @@
+<div class="connect-dialog">
+  <div id="connect-dialog" class="reveal" data-reveal>
+    <h2>Choose a Nickname</h2>
+    <p>This will be the name other people see when you send messages.</p>
+    <form ng-submit="vm.connect()">
+      <div class="input-group">
+        <input type="text" class="input-group-field" placeholder="Nickname"
+          required ng-model="vm.nickname">
+        <div class="input-group-button">
+          <input type="submit" class="primary button" value="Connect"
+            ng-disabled="!vm.nickname">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
