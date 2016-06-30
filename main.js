@@ -2,5 +2,13 @@
 
 const ioc = require('./ioc');
 
-let server = new ioc.WebServer(ioc);
-server.start(ioc.config.web.port);
+let webServer = new ioc.WebServer(ioc),
+  chatServer = new ioc.ChatServer(ioc, webServer);
+
+webServer.start(ioc.config.web.port)
+  .then(() => { chatServer.start(); })
+  .then(() => { console.log(`Patterflash listening on ${ioc.config.web.port}`); })
+  .catch((e) => {
+    console.log(e);
+    ioc.process.exit(1);
+  });
