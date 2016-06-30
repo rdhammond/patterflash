@@ -3,12 +3,12 @@
 
   angular
     .module('patterflash')
-    .directive('pfChatRoom', pfChatRoom);
+    .directive('pfChat', pfChat);
 
-  function pfChatRoom() {
+  function pfChat() {
     return {
       restrict: 'E',
-      templateUrl: 'views/pf-chat-room.html'
+      templateUrl: 'views/pf-chat.html'
     };
   }
 

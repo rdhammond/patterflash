@@ -1,6 +1,6 @@
 @import 'colors';
 
-.chat-room {
+.chat {
   .callout {
     background-color: inherit;
     height: 450px;
@@ -24,7 +24,7 @@
     }
 
     .server {
-      color: $alert;
+      color: $attention;
     }
 
     .error {

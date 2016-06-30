@@ -1,0 +1,39 @@
+@import '../bower_components/foundation-sites/scss/global';
+@import '../bower_components/foundation-sites/scss/components/callout';
+@import 'colors';
+@import 'shims';
+
+.chat-rooms {
+  .callout {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .rooms {
+    height: rem-calc(450px) - $input-height - $form-spacing - $callout-padding;
+    max-height: rem-calc(450px) - $input-height - $form-spacing - $callout-padding;
+    overflow-y: auto;
+    padding-bottom: $callout-padding;
+
+    li {
+      padding-left: $callout-padding;
+      padding-right: $callout-padding;
+
+      &:hover {
+        background-color: $secondary;
+        color: $reverse;
+      }
+    }
+  }
+
+  .search {
+    padding-left: $callout-padding;
+    padding-right: $callout-padding;
+  }
+
+  .room {
+    color: inherit;
+    display: block;
+  }
+}

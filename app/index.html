@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patterflash</title>
     <link rel="stylesheet" href="bower_components/foundation-sites/dist/foundation.min.css" />
+    <link rel="stylesheet" href="bower_components/foundation-icon-fonts/foundation-icons.css" />
     <link rel="stylesheet" href="css/patterflash.min.css" />
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="js/patterflash.min.js"></script>
@@ -18,13 +19,13 @@
     </div>
 
     <div class="row">
-      <div class="small-12 medium-8 columns" ng-controller="ChatRoomController as vm">
-        <pf-chat-room></pf-chat-room>
+      <div class="small-12 medium-8 columns" ng-controller="ChatController as vm">
+        <pf-chat></pf-chat>
       </div>
-      <div class="small-12 medium-4 columns">
+      <div class="small-12 medium-4 columns" ng-controller="ChatRoomsController as vm">
+        <pf-chat-rooms></pf-chat-rooms>
       </div>
     </div>
-
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/what-input/what-input.min.js"></script>

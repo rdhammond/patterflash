@@ -1,0 +1,18 @@
+<div class="chat-rooms">
+  <div class="primary callout">
+    <form class="search">
+      <div class="input-group">
+        <span class="input-group-label">
+          <i class="fi-magnifying-glass"></i>
+        </span>
+        <input type="text" class="input-group-field" placeholder="Search"
+          ng-model="vm.searchText">
+      </div>
+    </form>
+    <ul class="no-bullet rooms">
+      <li ng-repeat="room in vm.rooms | startswith:vm.searchText">
+        <a class="room" href="#" ng-click="vm.selectRoom(room)">{{room}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

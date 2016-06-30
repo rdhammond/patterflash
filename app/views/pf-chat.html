@@ -1,4 +1,4 @@
-<div class="chat-room">
+<div class="chat">
   <div class="callout">
     <ul class="chat-messages no-bullet">
       <li ng-repeat="chatMessage in vm.chatMessages">
@@ -30,8 +30,8 @@
         <div class="input-group-button">
           <input type="submit" class="primary button" value="Send"
             ng-disabled="!vm.message">
+        </div>
       </div>
-    </div>
     </div>
   </form>
 </div>

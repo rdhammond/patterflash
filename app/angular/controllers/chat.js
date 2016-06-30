@@ -3,11 +3,11 @@
 
   angular
     .module('patterflash')
-    .controller('ChatRoomController', ChatRoomController);
+    .controller('ChatController', ChatController);
 
-  ChatRoomController.$inject = ['$window'];
+  ChatController.$inject = ['$window'];
 
-  function ChatRoomController($window) {
+  function ChatController($window) {
     var vm = this;
     vm.send = send;
 

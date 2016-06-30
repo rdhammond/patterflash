@@ -1,0 +1,4 @@
+@import '../bower_components/foundation-sites/scss/util/unit';
+@import '../bower_components/foundation-sites/scss/forms/forms';
+
+$input-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
