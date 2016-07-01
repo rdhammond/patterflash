@@ -10,5 +10,6 @@ module.exports = {
     config: require('./config'),
     WebServer: require('./lib/web/WebServer'),
     ChatServer: require('./lib/chat/ChatServer'),
-    ChatClient: require('./lib/chat/ChatClient')
+    ChatClient: require('./lib/chat/ChatClient'),
+    ChatRooms: require('./lib/chat/ChatRooms')
 };

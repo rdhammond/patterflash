@@ -3,7 +3,9 @@
 
   var MAX_CHAT_LINES = 1000;
 
-  var rgxIsAction = /^\/me /i;
+  var rgxIsAction = /^\/me /i,
+    rgxIsJoin = /^\/join /i,
+    rgxIsLeave = /^\/leave/i;
 
   angular
     .module('patterflash')
@@ -22,20 +24,29 @@
     function init() {
       channels.chat = chatClient.on('chat', onChat);
       channels.action = chatClient.on('action', onAction);
+      channels.room = chatClient.on('room', onRoom);
+      channels.error = chatClient.on('error', onError);
     }
 
     function send() {
-      // ** TODO: Join, Leave, etc.
       var promise;
 
       if (rgxIsAction.test(vm.message))
         promise = sendAction();
+      else if (rgxIsJoin.test(vm.message))
+        promise = sendJoin();
+      else if (rgxIsLeave.test(vm.message))
+        promise = sendLeave();
       else
         promise = sendChat();
 
       return promise
         .then(function() { vm.message = ''; })
         .catch(error.catch);
+    }
+
+    function sendJoin() {
+      return chatClient.join(vm.message.replace(rgxIsJoin, ''));
     }
 
     function sendAction() {
@@ -46,6 +57,10 @@
       return chatClient.chat(vm.message);
     }
 
+    function sendLeave() {
+      return chatClient.leave(vm.message.replace(rgxIsLeave, ''));
+    }
+
     function onChat(msg) {
       pushMessage('chat', msg.nickname, msg.text);
     }
@@ -54,10 +69,15 @@
       pushMessage('action', msg.nickname, msg.text);
     }
 
+    function onRoom(text) {
+      pushMessage('room', text);
+    }
+
+    function onError(text) {
+      pushMessage('error', text);
+    }
+
     function pushMessage(type, nickname, text) {
-      console.log(type);
-      console.log(nickname);
-      console.log(text);
       if (!text) {
         text = nickname;
         nickname = null;

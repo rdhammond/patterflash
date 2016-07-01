@@ -12,6 +12,8 @@
     var channels = {
       chat: $q.defer(),
       action: $q.defer(),
+      room: $q.defer(),
+      error: $q.defer(),
       disconnect: $q.defer()
     };
 
@@ -20,8 +22,10 @@
       loggedIn: false,
       connect: connect,
       login: login,
+      join: join,
       chat: chat,
       action: action,
+      leave: leave,
       on: on
     };
 
@@ -56,7 +60,14 @@
     function hookEvents() {
       service.socket.on('chat', onChat);
       service.socket.on('action', onAction);
+      service.socket.on('room', onRoom);
+      service.socket.on('err', onError);
       service.socket.on('disconnect', onDisconnect);
+    }
+
+    function join(room) {
+      return deferSocketSend('join', room)
+        .then(function() { service.room = room; });
     }
 
     function chat(text) {
@@ -65,6 +76,11 @@
 
     function action(text) {
       return deferSocketSend('action', text);
+    }
+
+    function leave(room) {
+      return deferSocketSend('leave')
+        .then(function() { delete service.room; });
     }
 
     function deferSocketSend() {
@@ -76,9 +92,7 @@
       return deferred.promise;
 
       function callback(err) {
-        if (err)
-          return deferred.reject(err);
-
+        if (err) throw err;
         deferred.resolve();
       }
     }
@@ -91,6 +105,14 @@
       channels.action.notify(msg);
     }
 
+    function onRoom(text) {
+      channels.room.notify(text);
+    }
+
+    function onError(text) {
+      channels.error.notify(text);
+    }
+
     function onDisconnect() {
       service.connected = false;
       delete service.nickname;
@@ -100,9 +122,8 @@
     function on(event, callback) {
       var channel = channels[event];
 
-      if (!channel) {
+      if (!channel)
         throw new Error('No known event - ' + event);
-      }
 
       return channel.promise.then(null, null, callback).catch(error.catch);
     }
