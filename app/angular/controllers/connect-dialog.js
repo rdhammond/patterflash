@@ -12,8 +12,9 @@
     vm.connect = connect;
 
     function connect() {
-      // ** TODO
-      chatClient.connect().catch(error.catch);
+      return chatClient.connect()
+        .then(function() { return chatClient.login(vm.nickname); })
+        .catch(error.catch);
     }
   }
 

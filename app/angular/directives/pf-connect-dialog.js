@@ -27,16 +27,16 @@
 
       function init() {
         scope.$watch(
-          function() { return chatClient.connected; },
+          function() { return chatClient.connected && chatClient.loggedIn; },
           connectedChanged
         );
       }
 
       function connectedChanged(newVal) {
         if (newVal)
-          dialog.close();
-        else
-          dialog.open();
+          return dialog.close();
+
+        dialog.open();
       }
     }
   }

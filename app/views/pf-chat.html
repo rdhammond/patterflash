@@ -3,11 +3,11 @@
     <ul class="chat-messages no-bullet">
       <li ng-repeat="chatMessage in vm.chatMessages">
         <span class="chat" ng-if="chatMessage.type === 'chat'">
-          <span class="name">&lt;{{chatMessage.name}}&gt;</span>
+          <span class="name">&lt;{{chatMessage.nickname}}&gt;</span>
           {{chatMessage.text}}
         </span>
         <span class="action" ng-if="chatMessage.type === 'action'">
-          ** {{chatMessage.name}} {{chatMessage.text}}
+          ** {{chatMessage.nickname}} {{chatMessage.text}}
         </span>
         <span class="room" ng-if="chatMessage.type === 'room'">
           ** {{chatMessage.text}}
