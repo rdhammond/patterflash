@@ -20,6 +20,7 @@
     var service = {
       connected: false,
       loggedIn: false,
+      rooms: [],
       connect: connect,
       login: login,
       join: join,
@@ -47,9 +48,10 @@
     function login(nickname) {
       var deferred = $q.defer();
 
-      service.socket.emit('login', nickname, function() {
+      service.socket.emit('login', nickname, function(rooms) {
         service.loggedIn = true;
         service.nickname = nickname;
+        service.rooms = rooms;
         hookEvents();
         deferred.resolve();
       });
@@ -62,6 +64,8 @@
       service.socket.on('action', onAction);
       service.socket.on('room', onRoom);
       service.socket.on('err', onError);
+      service.socket.on('addRoom', onAddRoom);
+      service.socket.on('removeRoom', onRemoveRoom);
       service.socket.on('disconnect', onDisconnect);
     }
 
@@ -111,6 +115,18 @@
 
     function onError(text) {
       channels.error.notify(text);
+    }
+
+    function onAddRoom(room) {
+      if (service.rooms.indexOf(room) < 0)
+        service.rooms.push(room);
+    }
+
+    function onRemoveRoom(room) {
+      var index = service.rooms.indexOf(room);
+      if (index < 0) return;
+
+      service.rooms = service.rooms.splice(index, 1);
     }
 
     function onDisconnect() {
