@@ -30,6 +30,10 @@
           function() { return chatClient.connected && chatClient.loggedIn; },
           connectedChanged
         );
+
+        scope.$on('destroy', function() {
+          dialog.destroy();
+        });
       }
 
       function connectedChanged(newVal) {

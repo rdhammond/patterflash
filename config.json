@@ -1,5 +1,9 @@
 {
   "web": {
     "port": 10001
+  },
+  "mongo": {
+    "salt": "footlongchickenteriyaki",
+    "connectionString": "mongodb://localhost/patterflash"
   }
 }

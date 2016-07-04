@@ -5,16 +5,21 @@
     .module('patterflash')
     .controller('ConnectDialogController', ConnectDialogController);
 
-  ConnectDialogController.$inject = ['chatClient', 'error'];
+  ConnectDialogController.$inject = ['chatClient'];
 
-  function ConnectDialogController(chatClient, error) {
+  function ConnectDialogController(chatClient) {
     var vm = this;
     vm.connect = connect;
 
     function connect() {
+      delete vm.flash;
+
       return chatClient.connect()
-        .then(function() { return chatClient.login(vm.nickname); })
-        .catch(error.catch);
+        .then(function() { return chatClient.login(vm.username, vm.password); })
+        .catch(function(e) {
+          if (e.name === 'LoginError')
+            vm.flash = 'Could not log in.';
+        });
     }
   }
 
