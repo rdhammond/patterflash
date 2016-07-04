@@ -1,13 +1,15 @@
 <div class="connect-dialog">
   <div id="connect-dialog" class="reveal" data-reveal>
-    <h2>Log In</h2>
+    <h2>Log In or Create Account</h2>
     <form ng-submit="vm.connect()">
       <div class="callout alert" data-closable ng-hide="!vm.flash">
         {{vm.flash}}
       </div>
-      <input type="text" placeholder="Username" required ng-model="vm.username">
+      <input type="email" placeholder="Username" required ng-model="vm.email">
       <input type="password" placeholder="Password" required ng-model="vm.password">
-      <input type="submit" class="primary button" value="Log In">
+      <input type="text" placeholder="Nickname" required ng-model="vm.nickname">
+      <input type="submit" class="primary button" value="Log In"
+        ng-disabled="!vm.email || !vm.password || !vm.nickname">
     </form>
   </div>
 </div>

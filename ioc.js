@@ -8,6 +8,7 @@ let ioc = {
     process: require('process'),
     crypto: require('crypto'),
     mongoose: require('mongoose'),
+    FindOrCreate: require('mongoose-findorcreate'),
 
     config: require('./config'),
     WebServer: require('./lib/web/WebServer'),

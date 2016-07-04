@@ -44,15 +44,15 @@
       return deferred.promise;
     }
 
-    function login(username, password) {
+    function login(email, password, nickname) {
       var deferred = $q.defer();
 
-      service.socket.emit('login', username, password, function(err, rooms) {
+      service.socket.emit('login', email, password, nickname, function(err, rooms) {
         if (err)
           return deferred.reject(err);
 
         service.loggedIn = true;
-        service.nickname = username;
+        service.nickname = nickname;
         service.rooms = rooms;
         hookEvents();
         deferred.resolve();
