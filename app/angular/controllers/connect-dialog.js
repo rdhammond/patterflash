@@ -18,10 +18,7 @@
         .then(function() {
             return chatClient.login(vm.email, vm.password, vm.nickname);
         })
-        .catch(function(e) {
-          if (e.name === 'LoginError')
-            vm.flash = 'Could not log in or create account.';
-        });
+        .catch(function(e) { vm.flash = e; });
     }
   }
 

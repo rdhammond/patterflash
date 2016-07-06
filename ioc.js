@@ -16,8 +16,7 @@ let ioc = {
     ChatClient: require('./lib/chat/ChatClient'),
     ChatRooms: require('./lib/chat/ChatRooms'),
     UserRepository: require('./lib/db/UserRepository'),
-    Database: require('./lib/db/Database'),
-    LoginError: require('./lib/db/LoginError')
+    Database: require('./lib/db/Database')
 };
 
 ioc.UserModel = require('./lib/db/models/UserModel')(ioc);
