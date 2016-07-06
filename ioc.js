@@ -1,5 +1,9 @@
 'use strict';
 
+const ChatRoomsService = require('./lib/services/ChatRoomsService'),
+  NicknamesService = require('./lib/services/NicknamesService'),
+  UsersService = require('./lib/services/UsersService');
+
 let ioc = {
     express: require('express'),
     http: require('http'),
@@ -14,11 +18,15 @@ let ioc = {
     WebServer: require('./lib/web/WebServer'),
     ChatServer: require('./lib/chat/ChatServer'),
     ChatClient: require('./lib/chat/ChatClient'),
-    ChatRooms: require('./lib/chat/ChatRooms'),
     UserRepository: require('./lib/db/UserRepository'),
     Database: require('./lib/db/Database')
 };
 
+// Singletons
+//
 ioc.UserModel = require('./lib/db/models/UserModel')(ioc);
+ioc.chatRoomsService = new ChatRoomsService();
+ioc.nicknamesService = new NicknamesService();
+ioc.usersService = new UsersService(ioc);
 
 module.exports = ioc;
