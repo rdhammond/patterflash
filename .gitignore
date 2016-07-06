@@ -42,3 +42,6 @@ app/css
 
 # bower
 bower_components
+
+# config updates
+config.json
