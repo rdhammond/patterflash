@@ -10,7 +10,7 @@
       </div>
     </form>
     <ul class="no-bullet rooms">
-      <li ng-repeat="room in rooms | startswith:vm.searchText">
+      <li ng-repeat="room in vm.rooms | startswith:vm.searchText">
         <a class="room" href="#" ng-click="vm.selectRoom(room)">{{room}}</a>
       </li>
     </ul>

@@ -11,21 +11,20 @@
     .module('patterflash')
     .controller('ChatController', ChatController);
 
-  ChatController.$inject = ['chatClient', 'error'];
+  ChatController.$inject = ['chatClient', '$rootScope'];
 
-  function ChatController(chatClient, error) {
+  function ChatController(chatClient, $rootScope) {
     var vm = this;
     vm.chatMessages = [];
     vm.send = send;
 
-    var channels = {};
     init();
 
     function init() {
-      channels.chat = chatClient.on('chat', onChat);
-      channels.action = chatClient.on('action', onAction);
-      channels.room = chatClient.on('room', onRoom);
-      channels.error = chatClient.on('error', onError);
+      $rootScope.$on('chat', onChat);
+      $rootScope.$on('action', onAction);
+      $rootScope.$on('room', onRoom);
+      $rootScope.$on('error', onError);
     }
 
     function send() {
@@ -42,7 +41,7 @@
 
       return promise
         .then(function() { vm.message = ''; })
-        .catch(error.catch);
+        .catch(onError);
     }
 
     function sendJoin() {
@@ -61,19 +60,19 @@
       return chatClient.leave(vm.message.replace(rgxIsLeave, ''));
     }
 
-    function onChat(msg) {
+    function onChat(event, msg) {
       pushMessage('chat', msg.nickname, msg.text);
     }
 
-    function onAction(msg) {
+    function onAction(event, msg) {
       pushMessage('action', msg.nickname, msg.text);
     }
 
-    function onRoom(text) {
+    function onRoom(event, text) {
       pushMessage('room', text);
     }
 
-    function onError(text) {
+    function onError(event, text) {
       pushMessage('error', text);
     }
 

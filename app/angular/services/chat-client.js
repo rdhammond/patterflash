@@ -5,18 +5,9 @@
     .module('patterflash')
     .factory('chatClient', chatClient);
 
-  chatClient.$inject = ['socket.io', '$q', 'error'];
+  chatClient.$inject = ['socket.io', '$q', '$rootScope'];
 
-  function chatClient(io, $q, error) {
-    // Use $q.notify for pub/sub to stay out of $rootScope
-    var channels = {
-      chat: $q.defer(),
-      action: $q.defer(),
-      room: $q.defer(),
-      error: $q.defer(),
-      disconnect: $q.defer()
-    };
-
+  function chatClient(io, $q, $rootScope) {
     var service = {
       connected: false,
       loggedIn: false,
@@ -26,8 +17,7 @@
       join: join,
       chat: chat,
       action: action,
-      leave: leave,
-      on: on
+      leave: leave
     };
 
     return service;
@@ -66,8 +56,7 @@
       service.socket.on('action', onAction);
       service.socket.on('room', onRoom);
       service.socket.on('err', onError);
-      service.socket.on('addRoom', onAddRoom);
-      service.socket.on('removeRoom', onRemoveRoom);
+      service.socket.on('roomList', onRoomList);
       service.socket.on('disconnect', onDisconnect);
     }
 
@@ -104,46 +93,29 @@
     }
 
     function onChat(msg) {
-      channels.chat.notify(msg);
+      $rootScope.$emit('chat', msg);
     }
 
     function onAction(msg) {
-      channels.action.notify(msg);
+      $rootScope.$emit('action', msg);
     }
 
     function onRoom(text) {
-      channels.room.notify(text);
+      $rootScope.$emit('room', text);
     }
 
     function onError(text) {
-      channels.error.notify(text);
+      $rootScope.$emit('error', text);
     }
 
-    function onAddRoom(room) {
-      if (service.rooms.indexOf(room) < 0)
-        service.rooms.push(room);
-    }
-
-    function onRemoveRoom(room) {
-      var index = service.rooms.indexOf(room);
-      if (index < 0) return;
-
-      service.rooms = service.rooms.splice(index, 1);
+    function onRoomList(rooms) {
+      service.rooms = rooms;
     }
 
     function onDisconnect() {
       service.connected = false;
       delete service.nickname;
-      channels.disconnect.notify(msg.disconnect);
-    }
-
-    function on(event, callback) {
-      var channel = channels[event];
-
-      if (!channel)
-        throw new Error('No known event - ' + event);
-
-      return channel.promise.then(null, null, callback).catch(error.catch);
+      $rootScope.$emit('disconnect');
     }
   }
 

@@ -5,13 +5,20 @@
     .module('patterflash')
     .controller('ChatRoomHeaderController', ChatRoomHeaderController);
 
-  ChatRoomHeaderController.$inject = ['$scope'];
+  ChatRoomHeaderController.$inject = ['chatClient', '$scope'];
 
-  function ChatRoomHeaderController($scope) {
+  function ChatRoomHeaderController(chatClient, $scope) {
     var vm = this;
+    vm.room = '(No Room)';
 
-    // ** TODO
-    vm.room = 'Test Room';
+    $scope.$watch(
+      function() { return chatClient.room; },
+      onRoomChanged
+    );
+
+    function onRoomChanged(newVal) {
+      vm.room = newVal || '(No Room)';
+    }
   }
 
 })(angular);
