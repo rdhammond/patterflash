@@ -41,7 +41,7 @@
 
       return promise
         .then(function() { vm.message = ''; })
-        .catch(onError);
+        .catch(function(e) { onError(null, e.message); });
     }
 
     function sendJoin() {

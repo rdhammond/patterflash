@@ -1,3 +1,4 @@
+// ** TODO: Something's up with our root scope. We shouldn't have to call $digest().
 (function(angular) {
   'use strict';
 
@@ -87,25 +88,31 @@
       return deferred.promise;
 
       function callback(err) {
-        if (err) throw err;
+        if (err)
+          return deferred.reject(new Error(err));
+
         deferred.resolve();
       }
     }
 
     function onChat(msg) {
       $rootScope.$emit('chat', msg);
+      $rootScope.$digest();
     }
 
     function onAction(msg) {
       $rootScope.$emit('action', msg);
+      $rootScope.$digest();
     }
 
     function onRoom(text) {
       $rootScope.$emit('room', text);
+      $rootScope.$digest();
     }
 
     function onError(text) {
       $rootScope.$emit('error', text);
+      $rootScope.$digest();
     }
 
     function onRoomList(rooms) {
