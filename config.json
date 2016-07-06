@@ -5,5 +5,11 @@
   "mongo": {
     "salt": "footlongchickenteriyaki",
     "connectionString": "mongodb://localhost/patterflash"
+  },
+  "mail": {
+    "host": "",
+    "user": "",
+    "password": "",
+    "isSecure": true
   }
 }
