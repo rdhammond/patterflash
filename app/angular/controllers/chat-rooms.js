@@ -21,8 +21,7 @@
     }
 
     function selectRoom(room) {
-      // ** TODO
-      $window.alert(room);
+      return chatClient.join(room);
     }
   }
 

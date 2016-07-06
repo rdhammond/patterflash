@@ -117,6 +117,7 @@
 
     function onRoomList(rooms) {
       service.rooms = rooms;
+      $rootScope.$digest();
     }
 
     function onDisconnect() {
