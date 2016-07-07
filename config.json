@@ -10,6 +10,6 @@
     "host": "localhost",
     "user": "test@email.com",
     "password": "testpassword123",
-    "isSecure": true
+    "baseUrl": "http://localhost:10001"
   }
 }

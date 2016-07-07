@@ -34,9 +34,9 @@ ioc.emailTemplates = {
 };
 
 ioc.UserModel = require('./lib/db/models/UserModel')(ioc);
+ioc.emailService = new EmailService(ioc);
 ioc.chatRoomsService = new ChatRoomsService();
 ioc.nicknamesService = new NicknamesService();
 ioc.usersService = new UsersService(ioc);
-ioc.emailService = new EmailService(ioc);
 
 module.exports = ioc;
