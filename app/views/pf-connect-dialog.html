@@ -2,7 +2,7 @@
   <div id="connect-dialog" class="reveal" data-reveal>
     <h2>Log In or Create Account</h2>
     <form ng-submit="vm.connect()">
-      <div class="callout alert" data-closable ng-hide="!vm.flash">
+      <div class="flash callout alert" data-closable ng-hide="!vm.flash">
         {{vm.flash}}
       </div>
       <input type="email" placeholder="Username" required ng-model="vm.email">
