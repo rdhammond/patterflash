@@ -1,4 +1,4 @@
-// ** TODO: Something's up with our root scope. We shouldn't have to call $digest().
+// ** TODO: Something's up with our root scope. We shouldn't have to call $apply().
 (function(angular) {
   'use strict';
 
@@ -97,27 +97,27 @@
 
     function onChat(msg) {
       $rootScope.$emit('chat', msg);
-      $rootScope.$digest();
+      $rootScope.$apply();
     }
 
     function onAction(msg) {
       $rootScope.$emit('action', msg);
-      $rootScope.$digest();
+      $rootScope.$apply();
     }
 
     function onRoom(text) {
       $rootScope.$emit('room', text);
-      $rootScope.$digest();
+      $rootScope.$apply();
     }
 
     function onError(text) {
       $rootScope.$emit('error', text);
-      $rootScope.$digest();
+      $rootScope.$apply();
     }
 
     function onRoomList(rooms) {
       service.rooms = rooms;
-      $rootScope.$digest();
+      $rootScope.$apply();
     }
 
     function onDisconnect() {
