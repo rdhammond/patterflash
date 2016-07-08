@@ -3,7 +3,8 @@
 const ChatRoomsService = require('./lib/chat/ChatRoomsService'),
   NicknamesService = require('./lib/chat/NicknamesService'),
   UsersService = require('./lib/UsersService'),
-  EmailService = require('./lib/email/EmailService');
+  EmailService = require('./lib/email/EmailService'),
+  ChatLogsService = require('./lib/chat/ChatLogsService');
 
 let ioc = {
     express: require('express'),
@@ -39,5 +40,6 @@ ioc.emailService = new EmailService(ioc);
 ioc.chatRoomsService = new ChatRoomsService();
 ioc.nicknamesService = new NicknamesService();
 ioc.usersService = new UsersService(ioc);
+ioc.chatLogsService = new ChatLogsService(ioc);
 
 module.exports = ioc;
