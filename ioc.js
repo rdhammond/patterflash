@@ -24,7 +24,7 @@ let ioc = {
     ChatClient: require('./lib/chat/ChatClient'),
     UserRepository: require('./lib/db/UserRepository'),
     Database: require('./lib/db/Database'),
-
+    ChatLogRepository: require('./lib/db/ChatLogRepository')
 };
 
 // Singletons
@@ -34,6 +34,7 @@ ioc.emailTemplates = {
 };
 
 ioc.UserModel = require('./lib/db/models/UserModel')(ioc);
+ioc.ChatLogModel = require('./lib/db/models/ChatLogModel')(ioc);
 ioc.emailService = new EmailService(ioc);
 ioc.chatRoomsService = new ChatRoomsService();
 ioc.nicknamesService = new NicknamesService();
