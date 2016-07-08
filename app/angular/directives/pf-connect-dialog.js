@@ -5,13 +5,12 @@
     .module('patterflash')
     .directive('pfConnectDialog', pfConnectDialog);
 
-  pfConnectDialog.$inject = ['chatClient', '$location'];
+  pfConnectDialog.$inject = ['chatClient', '$window'];
 
-  function pfConnectDialog(chatClient, $location) {
+  function pfConnectDialog(chatClient, $window) {
     return {
       restrict: 'E',
       templateUrl: 'views/pf-connect-dialog.html',
-      //scope: { flash: '=' },
       link: link
     };
 
@@ -24,22 +23,14 @@
         }
       );
 
-      init();
+      scope.$watch(
+        function() { return chatClient.connected && chatClient.loggedIn; },
+        connectedChanged
+      );
 
-      function init() {
-        // ** TODO: Initial scope isn't coming across on success
-        if ($location.search().c === 1)
-          scope.flash = 'Your email has been confirmed. You may log in normally.';
-
-        scope.$watch(
-          function() { return chatClient.connected && chatClient.loggedIn; },
-          connectedChanged
-        );
-
-        scope.$on('destroy', function() {
-          dialog.destroy();
-        });
-      }
+      scope.$on('destroy', function() {
+        dialog.destroy();
+      });
 
       function connectedChanged(newVal) {
         if (newVal)
