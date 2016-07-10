@@ -1,4 +1,3 @@
-// ** TODO: Something's up with our root scope. We shouldn't have to call $apply().
 (function(angular) {
   'use strict';
 
