@@ -5,7 +5,7 @@
   "mongo": {
     "salt": "footlongchickenteriyaki",
     "connectionString": "mongodb://localhost/patterflash",
-    "logging": false
+    "logging": true
   },
   "email": {
     "host": "localhost",
